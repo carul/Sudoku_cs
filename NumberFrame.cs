@@ -22,10 +22,8 @@ namespace Sudoku_gs
 
 			for (int i = 0; i < 9; i++) {
 				c_buttons.Add (new Button ((i+1).ToString()));
-			}
-
-			for (int i = 0; i < 9; i++) {
-				c_buttons [i].Clicked += (sender, EventArgs) => InputController.SetNum (sender, EventArgs, i, name);
+				var current = i+1;
+				c_buttons [i].Clicked += (sender, EventArgs) => InputController.SetNum (sender, EventArgs, current, name);
 				localtable.Attach (c_buttons[i], 0, 1, (uint)i, (uint)i+1);
 			}
 

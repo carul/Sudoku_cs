@@ -8,8 +8,8 @@ namespace Sudoku_gs
 
 	public class sudoku_gs
 	{
-		public const int scr_width = 800;
-		public const int scr_height = 600;
+		public const int scr_width = 640;
+		public const int scr_height = 480;
 		public static void Main( string[] args)
 		{
 			Application.Init();

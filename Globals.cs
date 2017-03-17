@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Gdk;
 using Gtk;
 
@@ -13,4 +13,3 @@ namespace Sudoku_gs
 		}
 	}
 }
-
