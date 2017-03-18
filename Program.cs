@@ -6,19 +6,19 @@ using System.Drawing;
 namespace Sudoku_gs
 {
 
-	public class sudoku_gs
+	public class sudoku_gs : Window 
 	{
 		public const int scr_width = 640;
 		public const int scr_height = 480;
-		public static void Main( string[] args)
-		{
-			Application.Init();
+		public sudoku_gs() :base(""){
 			Window window = new Window ("Sudoku");
 			window.DeleteEvent += delegate {
 				Application.Quit();
 			};
+
 			window.SetSizeRequest(scr_width, scr_height);
 			window.BorderWidth= 10;
+
 			Table m_table = new Table (5, 8, false);
 
 			GameField gf = new GameField (m_table, 1, 1, 4, 6);
@@ -35,13 +35,17 @@ namespace Sudoku_gs
 			MenuItem ResetMenu = new MenuItem ("Start / Reset");
 			mb.Append (ResetMenu);
 			mb.Append (QuitMenu);
+			window.Resizable = false;
 			m_table.Attach (mb, 0, 8, 0, 1);
-
 			window.ShowAll();
-			Application.Run();
-
 		}
 
+		public static void Main( string[] args)
+		{
+			Application.Init();
+			new sudoku_gs ();
+			Application.Run();
+		}
 	}
 
 }

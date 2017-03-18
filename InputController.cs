@@ -10,7 +10,6 @@ namespace Sudoku_gs
 			Gref = s;
 		}
 		public static void SetNum(Object obj, EventArgs args, int which, string type){
-			Console.WriteLine(which);
 			if (type == "Pen")
 				Gref.setField (which);
 			else if (type == "Pencil")

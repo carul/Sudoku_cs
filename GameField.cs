@@ -24,18 +24,32 @@ namespace Sudoku_gs
 			}
 		}
 
-		public void setField(int num){
+		public void setField(int n){
 			if (selectedf == null)
 				return;
-			selectedf.num = (uint)num;
+			selectedf.set = true;
+			if (selectedf.num != n)
+				selectedf.num = n;
+			else
+				selectedf.num = 0;
 			selectedf.update ();
 		}
 
 		public void setFieldDraw(int num){
 			if (selectedf == null)
 				return;
+			selectedf.set = false;
 			selectedf.draws [num-1] ^= true;
 			selectedf.update ();
+		}
+
+		public void updateAll(object obj, EventArgs args){
+			Console.Write ("cl");
+			foreach(FieldBox fb in c_fbonxes){
+				foreach(Field f in fb.c_flist){
+					f.update ();
+				}
+			}
 		}
 	}
 }
