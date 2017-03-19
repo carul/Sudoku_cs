@@ -3,11 +3,13 @@ using System;
 using System.Drawing;
 
 
+
 namespace Sudoku_gs
 {
 
 	public class sudoku_gs : Window 
 	{
+
 		public const int scr_width = 640;
 		public const int scr_height = 480;
 		public sudoku_gs() :base(""){
@@ -23,8 +25,8 @@ namespace Sudoku_gs
 
 			GameField gf = new GameField (m_table, 1, 1, 4, 6);
 			InputController.setGTarget (gf);
-			new NumberFrame (m_table, "Pen", 1, 0, 4, 1);
-			new NumberFrame (m_table, "Pencil", 1, 7, 4, 1);
+			new NumberFrame (m_table, gf, "Pen", 1, 0, 4, 1);
+			new NumberFrame (m_table, gf, "Pencil", 1, 7, 4, 1);
 
 			m_table.Show ();
 			window.Add (m_table);
@@ -33,10 +35,14 @@ namespace Sudoku_gs
 			MenuItem QuitMenu = new MenuItem ("Exit");
 			QuitMenu.ButtonPressEvent += delegate {	Application.Quit(); };
 			MenuItem ResetMenu = new MenuItem ("Start / Reset");
+			ResetMenu.ButtonPressEvent += delegate {
+				new SelectA (gf);
+			};
 			mb.Append (ResetMenu);
 			mb.Append (QuitMenu);
+
 			window.Resizable = false;
-			m_table.Attach (mb, 0, 8, 0, 1);
+			m_table.Attach (mb, 0, 9, 0, 1);
 			window.ShowAll();
 		}
 

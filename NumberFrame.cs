@@ -9,7 +9,7 @@ namespace Sudoku_gs
 	{
 
 		List<Button> c_buttons = new List<Button> ();
-		public NumberFrame (Table parent_t, string name="", uint row = 0 , uint col = 0, uint rowspan = 0, uint colspan = 0)
+		public NumberFrame (Table parent_t, GameField pgf, string name="", uint row = 0 , uint col = 0, uint rowspan = 0, uint colspan = 0)
 		{
 			Frame frame;
 			Box container;
@@ -31,6 +31,18 @@ namespace Sudoku_gs
 			container.PackStart (frame, true, true, 5);
 
 			localtable.Show ();
+
+			if (name == "Pen") {
+				localtable.Resize (10, 1);
+				Button hint = new Button ("Hint");
+				localtable.Attach (hint, 0, 1, 9, 10);
+				hint.Clicked += pgf.hint;
+			} else if (name == "Pencil") {
+				localtable.Resize (10, 1);
+				Button clear = new Button ("Clean");
+				localtable.Attach (clear, 0, 1, 9, 10);
+				clear.Clicked += pgf.clearDrafts;
+			}
 
 			parent_t.Attach (container, col, colspan+col, row, rowspan+row);
 		}
